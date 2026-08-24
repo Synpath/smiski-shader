@@ -20,12 +20,11 @@ const int HEIGHT = 800;
 
 float startTime = 0.0f;
 const float duration = 5.0f;
-glm::vec3 startColor = glm::vec3(1.0f, 0.2f, 0.4f);
-glm::vec3 targetColor = glm::vec3(1.0f, 0.2f, 0.4f);
+const glm::vec4 lightPos = glm::vec4(0.0f, 10.0f, 0.0f, 1.0f);
 
 int main () {
 
-    // WINDOW SETUP --------------------------------------------------------------
+    // SETUP --------------------------------------------------------------
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -52,6 +51,7 @@ int main () {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     black = 0;
     glfwSetKeyCallback(window, key_callback);
+    glEnable(GL_DEPTH_TEST);
     //-----------------------------------------------------------------
 
     // OBJECTS/SHADERS ------------------------------------------------
@@ -131,6 +131,9 @@ int main () {
     smiski.addUniformLocation("model", glGetUniformLocation(smiski.ID, "model"));
     smiski.addUniformLocation("view", glGetUniformLocation(smiski.ID, "view"));
     smiski.addUniformLocation("uBlack", glGetUniformLocation(smiski.ID, "uBlack"));
+    smiski.addUniformLocation("modelView", glGetUniformLocation(smiski.ID, "modelView"));
+    smiski.addUniformLocation("normalMat", glGetUniformLocation(smiski.ID, "normalMat"));
+    smiski.addUniformLocation("uLightPos", glGetUniformLocation(smiski.ID, "uLightPos"));
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -143,11 +146,16 @@ int main () {
     glUniformMatrix4fv(smiski.uniformLocations["model"], 1, GL_FALSE, &model[0][0]);
 
     glm::mat4 view = glm::mat4(1.0f);
-    view = glm::lookAt(glm::vec3(0.0f, 5.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
+    view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
     glUniformMatrix4fv(smiski.uniformLocations["view"], 1, GL_FALSE, glm::value_ptr(view));
 
+    glm::mat4 modelView = view * model;
 
-    glEnable(GL_DEPTH_TEST);
+    glm::mat3 normalMatrix = glm::mat3(glm::transpose(glm::inverse(modelView)));
+    glUniformMatrix3fv(smiski.uniformLocations["normalMat"], 1, GL_FALSE, glm::value_ptr(normalMatrix));
+
+    glm::vec4 lightpos = view * lightPos;
+    glUniform4fv(smiski.uniformLocations["uLightPos"], 1, glm::value_ptr(lightPos));
 
     // RENDER LOOP ----------------------------------------------------
     while (!glfwWindowShouldClose(window)) {

@@ -16,3 +16,6 @@ amount of time charged should decrease the multiplier on the time so that more t
 
 logarithmic interpolation?
 decay time depends on time under light + "intensity" of color atm
+
+
+
