@@ -1,6 +1,4 @@
-#version 460 core
-uniform type uTime;
-uniform boolean uLight;
+
 
 - when first initialized, object should be in light, full color
 - measure the amount of time it's in the light "white background" = time to "charge" the object with light
@@ -15,12 +13,6 @@ uniform boolean uLight;
 !!!! convert to hsv, add time values to saturation and value, convert back to rgb? !!!!!
 
 amount of time charged should decrease the multiplier on the time so that more time == lerp slower
-
-OR:
-render to framebuffer
-pick color from the framebuffer
-lerp from color -> black(ish) using time
-do the opposite when light is on
 
 logarithmic interpolation?
 decay time depends on time under light + "intensity" of color atm
