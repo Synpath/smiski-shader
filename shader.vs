@@ -17,5 +17,12 @@ amount of time charged should decrease the multiplier on the time so that more t
 logarithmic interpolation?
 decay time depends on time under light + "intensity" of color atm
 
-
+TODO:
+- HDR + bloom
+- model loading/parser
+- smiski model
+- dynamic time duration of decay
+- change the decay function?
+- add a floor
+- make the smiski its own light source
 
