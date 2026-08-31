@@ -32,6 +32,8 @@ Shader::Shader(const char * vertexPath, const char * fragmentPath) {
         fragmentCode = fragmentStream.str();
     } catch (std::ifstream::failure &e) {
         std::cout << "ERROR::SHADER::FILE NOT SUCCESSFULLY READ: " << e.what() << std::endl;
+        vertexFile.close();
+        fragmentFile.close();
         return;
     }
 
@@ -60,6 +62,7 @@ Shader::Shader(const char * vertexPath, const char * fragmentPath) {
     glDetachShader(ID, fragment);
     glDeleteShader(vertex);
     glDeleteShader(fragment);
+
 }
 
 void Shader::use() {
