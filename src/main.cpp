@@ -22,7 +22,7 @@ int HEIGHT = 800;
 
 float startTime = 0.0f;
 const float duration = 5.0f;
-const glm::vec4 lightPos = glm::vec4(0.0f, 10.0f, 3.0f, 1.0f);
+const glm::vec4 lightPos = glm::vec4(0.0f, 10.0f, 0.0f, 1.0f);
 
 int main () {
 
@@ -201,7 +201,7 @@ int main () {
     glUniformMatrix4fv(smiski.uniformLocations["model"], 1, GL_FALSE, glm::value_ptr(smiski.modelMatrix));
 
     glm::mat4 view = glm::mat4(1.0f);
-    smiski.viewMatrix = glm::lookAt(glm::vec3(0.0f, 5.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
+    smiski.viewMatrix = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
     glUniformMatrix4fv(smiski.uniformLocations["view"], 1, GL_FALSE, glm::value_ptr(smiski.viewMatrix));
 
     glm::mat4 modelView = view * smiski.modelMatrix;
@@ -259,7 +259,7 @@ int main () {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         hdr.use();
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, colorBuffer[1]);
+        glBindTexture(GL_TEXTURE_2D, colorBuffer[0]);
         glUniform1i(glGetUniformLocation(hdr.ID, "hdrBuffer"), 0);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, blurColor[!horizontal]);

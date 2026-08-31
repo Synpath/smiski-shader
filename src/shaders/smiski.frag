@@ -39,7 +39,7 @@ void main() {
 
     rimColor *= rimIntensity;
 
-    float progress = clamp((uTime - uStartTime) / 10.0f, 0.0f, 0.9f);
+    float progress = clamp((uTime - uStartTime) / 10.0f, 0.0f, 0.99f);
     
     if (!uBlack) {
         progress = 0.0f;
@@ -51,13 +51,12 @@ void main() {
     vec3 result = objColor * (ambient + diffuse + rimColor);
 
     vec3 black = vec3(0.0f, 0.0f, 0.0f);
-    //result = mix(result, black, progress);
-
-    FragColor = vec4(result, 1.0f);
-
     float luminosity = dot(result, weight);
-
-    if (luminosity > 0.8f) {
+    
+    result = mix(result, black, progress);
+    FragColor = vec4(result, 1.0f);
+    
+    if (luminosity > 0.4f) {
         BrightColor = FragColor;
     } else {
         BrightColor = vec4(black, 1.0f);
