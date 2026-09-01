@@ -10,8 +10,8 @@ uniform bool uBlack;
 
 void main() {
 
-    float exposure = 0.9f;
-    float gamma = 2.2f;
+    float exposure = 0.7f;
+    float gamma = 1.6f;
 
     vec3 hdrColor = texture(hdrBuffer, TexCoords).rgb;
     vec3 blurColor = texture(blurBuffer, TexCoords).rgb;
@@ -24,6 +24,7 @@ void main() {
         result = pow(result, vec3(1.0f / gamma));
         result *= vec3(0.85f, 0.9f, 0.53f);
         FragColor = vec4(result, 1.0f);
+
     } else {
         //result = hdrColor + blurColor;
         //result += pow(hdrColor, vec3(1.0f / gamma));

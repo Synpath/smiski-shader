@@ -53,10 +53,10 @@ void main() {
     vec3 black = vec3(0.0f, 0.0f, 0.0f);
     float luminosity = dot(result, weight);
     
-    result = mix(result, black, progress);
+    //result = mix(result, black, progress);
     FragColor = vec4(result, 1.0f);
     
-    if (luminosity > 0.4f) {
+    if (luminosity > 0.75f) {
         BrightColor = FragColor;
     } else {
         BrightColor = vec4(black, 1.0f);

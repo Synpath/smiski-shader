@@ -237,7 +237,7 @@ int main () {
 
         // BLUR --------------------------------
         bool horizontal = true, first = true;
-        int amount = 50;
+        int amount = 20;
         
         blur.use();
         glActiveTexture(GL_TEXTURE0); 
