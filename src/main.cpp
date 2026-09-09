@@ -9,7 +9,7 @@
 #include "object.hpp"
 
 // g++ -o main src/main.cpp src/glad.c -I./include -lGL -lglfw
-// g++ -o main src/main.cpp src/glad.c src/shader.cpp -I./include -lGL -lglfw
+// g++ -o main src/main.cpp src/glad.c src/shader.cpp src/object.cpp -I./include -lGL -lglfw
 
 void framebuffer_size_callback(GLFWwindow * window, int width, int height);
 void key_callback(GLFWwindow * window, int key, int scancode, int action, int mods);
