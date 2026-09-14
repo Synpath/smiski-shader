@@ -14,3 +14,5 @@ Since this was created as an introduction to OpenGL, my main focus is on the vis
 ## Future Work
 - Intended items in the Features section
 - Improve code modularity
+---
+## Progress Pictures
