@@ -14,8 +14,9 @@ Since this was created as an introduction to OpenGL, my main focus is on the vis
 ## Future Work
 - Intended items in the Features section
 - Improve code modularity
-<<<<<<< HEAD
----
 ## Progress Pictures
-=======
->>>>>>> f2d2d55883bf7e10a1d7b0df18315e0af3715fdc
+---
+<img src="https://github.com/Synpath/smiski-shader/blob/main/images/prog1.png" width="30%" />
+<img src="https://github.com/Synpath/smiski-shader/blob/main/images/prog2.png" width="30%" />
+<img src="https://github.com/Synpath/smiski-shader/blob/main/images/prog3.png" width="30%" />
+
